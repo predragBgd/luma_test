@@ -16,4 +16,7 @@ module.exports = class HomePage {
   getCreateAccountBtn() {
     return this.#driver.findElement(By.linkText("Create an Account"));
   }
+  getLogin() {
+    return this.#driver.findElement(By.linkText("Sign In"));
+  }
 };
