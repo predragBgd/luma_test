@@ -10,4 +10,7 @@ module.exports = class AllPage {
   getTextH1() {
     return this.#driver.findElement(By.xpath(`//h1`)).getText();
   }
+  getSaleBtn() {
+    return this.#driver.findElement(By.xpath(`//ul/li[6]`));
+  }
 };

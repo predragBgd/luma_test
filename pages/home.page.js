@@ -1,10 +1,12 @@
 "use strict";
 
 const { By } = require("selenium-webdriver");
+const AllPage = require("./all.page");
 
-module.exports = class HomePage {
+module.exports = class HomePage extends AllPage {
   #driver;
   constructor(webdriver) {
+    super(webdriver);
     this.#driver = webdriver;
   }
   getHomePage() {
@@ -18,5 +20,8 @@ module.exports = class HomePage {
   }
   getLogin() {
     return this.#driver.findElement(By.linkText("Sign In"));
+  }
+  getWelcomeMsg() {
+    return this.#driver.findElement(By.linkText(" Sign Out "));
   }
 };

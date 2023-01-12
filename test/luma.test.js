@@ -7,6 +7,8 @@ const HomePage = require("../pages/home.page");
 const AccountCreatePage = require("../pages/accountCreate.page");
 const AccountPage = require("../pages/account.page");
 const AccountLoginPage = require("../pages/accountLogin.page");
+const SalePage = require("../pages/sale.page");
+const WomanTeesPage = require("../pages/womanTees.page");
 
 describe("Luma test", () => {
   let driver;
@@ -14,6 +16,8 @@ describe("Luma test", () => {
   let accountCreatePage;
   let accountPage;
   let accountLoginPage;
+  let salePage;
+  let womanTeesPage;
 
   let firstName = "Peter";
   let lastName = "Polip";
@@ -26,6 +30,8 @@ describe("Luma test", () => {
     accountCreatePage = new AccountCreatePage(driver);
     accountPage = new AccountPage(driver);
     accountLoginPage = new AccountLoginPage(driver);
+    salePage = new SalePage(driver);
+    womanTeesPage = new WomanTeesPage(driver);
   });
   after(async () => {
     await driver.quit();
@@ -54,7 +60,22 @@ describe("Luma test", () => {
     await accountLoginPage.getLoginEmail().sendKeys(eMail);
     await accountLoginPage.getLoginPassword().sendKeys(password);
     await accountLoginPage.getLoginBtn().click();
-    // expect(await accountPage.getTextH1()).to.eq("My Account");
-    await driver.sleep(5000);
+    await driver.wait(until.elementLocated(By.xpath(`//header/div[1]/div/ul`)));
+
+    // Moram da resim ovde asertaciju!
+
+    /*
+    console.log((await homePage.getWelcomeMsg().getText()) + "kkkll ");
+    expect(await homePage.getWelcomeMsg().getText()).to.eq(
+      "Welcome, Peter Polip!"
+    );
+     */
+  });
+  it("Shop items on sale", async () => {
+    await homePage.getSaleBtn().click();
+    expect(await salePage.getTextH1()).to.eq("Sale");
+    await salePage.getTeesSaleLink().click();
+    expect(await womanTeesPage.getTextH1()).to.eq("Tees");
+    await womanTeesPage.addItem1().click();
   });
 });
