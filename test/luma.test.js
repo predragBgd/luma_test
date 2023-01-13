@@ -9,6 +9,7 @@ const AccountPage = require("../pages/account.page");
 const AccountLoginPage = require("../pages/accountLogin.page");
 const SalePage = require("../pages/sale.page");
 const WomanTeesPage = require("../pages/womanTees.page");
+const ProductPage = require("../pages/products.page");
 
 describe("Luma test", () => {
   let driver;
@@ -18,6 +19,7 @@ describe("Luma test", () => {
   let accountLoginPage;
   let salePage;
   let womanTeesPage;
+  let productPage;
 
   let firstName = "Peter";
   let lastName = "Polip";
@@ -32,6 +34,7 @@ describe("Luma test", () => {
     accountLoginPage = new AccountLoginPage(driver);
     salePage = new SalePage(driver);
     womanTeesPage = new WomanTeesPage(driver);
+    productPage = new ProductPage(driver);
   });
   after(async () => {
     await driver.quit();
@@ -77,5 +80,16 @@ describe("Luma test", () => {
     await salePage.getTeesSaleLink().click();
     expect(await womanTeesPage.getTextH1()).to.eq("Tees");
     await womanTeesPage.addItem1().click();
+    expect(await productPage.getTextH1()).to.eq("Desiree Fitness Tee");
+    // Problem sa cekanjem
+    await driver.sleep(6000);
+    await productPage.getSizeM().click();
+    await productPage.getColor().click();
+    await productPage.getQty().clear();
+    await productPage.getQty().sendKeys("3");
+    await productPage.getAddToCartBtn().click();
+    // Problem sa cekanjem
+    await driver.sleep(6000);
+    expect(await productPage.getAddToChartMsg()).to.contain("You added");
   });
 });

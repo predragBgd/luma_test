@@ -12,4 +12,10 @@ module.exports = class WomanTeesPage extends AllPage {
   addItem1() {
     return this.#driver.findElement(By.xpath(`//ol/li[1]`));
   }
+  addItem2() {
+    return this.#driver.findElement(By.xpath(`//ol/li[6]`));
+  }
+  addItem3() {
+    return this.#driver.findElement(By.xpath(`//ol/li[10]`));
+  }
 };
