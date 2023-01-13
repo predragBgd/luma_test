@@ -18,8 +18,14 @@ module.exports = class ProductPage extends AllPage {
   getAddToCartBtn() {
     return this.#driver.findElement(By.id("product-addtocart-button"));
   }
-  getColor() {
+  getColor1() {
+    return this.#driver.findElement(By.id("option-label-color-93-item-50"));
+  }
+  getColor2() {
     return this.#driver.findElement(By.id("option-label-color-93-item-56"));
+  }
+  getColor3() {
+    return this.#driver.findElement(By.id("option-label-color-93-item-58"));
   }
   getAddToChartMsg() {
     return this.#driver

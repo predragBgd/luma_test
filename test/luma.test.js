@@ -84,12 +84,37 @@ describe("Luma test", () => {
     // Problem sa cekanjem
     await driver.sleep(6000);
     await productPage.getSizeM().click();
-    await productPage.getColor().click();
+    await productPage.getColor2().click();
     await productPage.getQty().clear();
     await productPage.getQty().sendKeys("3");
     await productPage.getAddToCartBtn().click();
     // Problem sa cekanjem
     await driver.sleep(6000);
     expect(await productPage.getAddToChartMsg()).to.contain("You added");
+    await driver.navigate().back();
+    expect(await womanTeesPage.getTextH1()).to.eq("Tees");
+    await womanTeesPage.addItem2().click();
+    expect(await productPage.getTextH1()).to.eq("Tiffany Fitness Tee");
+    await productPage.getSizeM().click();
+    await productPage.getColor1().click();
+    await productPage.getQty().clear();
+    await productPage.getQty().sendKeys("2");
+    await productPage.getAddToCartBtn().click();
+    // Problem sa cekanjem
+    await driver.sleep(6000);
+    expect(await productPage.getAddToChartMsg()).to.contain("You added");
+    await driver.navigate().back();
+    expect(await womanTeesPage.getTextH1()).to.eq("Tees");
+    await womanTeesPage.addItem3().click();
+    expect(await productPage.getTextH1()).to.eq("Layla Tee");
+    await productPage.getSizeM().click();
+    await productPage.getColor3().click();
+    await productPage.getQty().clear();
+    await productPage.getQty().sendKeys("2");
+    await productPage.getAddToCartBtn().click();
+    // Problem sa cekanjem
+    await driver.sleep(6000);
+    expect(await productPage.getAddToChartMsg()).to.contain("You added");
+    await driver.sleep(6000);
   });
 });
